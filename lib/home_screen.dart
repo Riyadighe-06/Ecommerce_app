@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerce_project/item_details.dart';
-import 'package:e_commerce_project/textstyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -61,20 +60,20 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffffF0F1F2),
+      backgroundColor: const Color(0xffffF0F1F2),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(30),
                     bottomRight: Radius.circular(30)),
                 gradient: LinearGradient(
                     colors: [
-                      Color(0xff009FBC).withOpacity(0.20),
-                      Color(0xffFF6600).withOpacity(0.20),
+                      const Color(0xff009FBC).withOpacity(0.20),
+                      const Color(0xffFF6600).withOpacity(0.20),
                     ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -110,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -123,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ],
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Stack(
                           alignment: Alignment.topRight,
                           children: [
@@ -154,26 +153,26 @@ class _HomeScreenState extends State<HomeScreen> {
                                 // height: 10,
                                 // width: 10,
                                 padding: const EdgeInsets.all(5),
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                     // border: Border.all(
                                     //     color: Colors.white, width: 2.0),
                                     color: Color(0xffFF6600)),
-                                child: Text(""),
+                                child: const Text(""),
                               ),
                             ),
                           ],
                         )
                       ],
                     )),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Container(
                       width: MediaQuery.of(context).size.width,
                       height: 50,
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
                       // Adjust padding as needed
                       decoration: BoxDecoration(
                         color: Colors.grey.shade100,
@@ -182,7 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Colors.grey.shade100,
                         ),
                       ),
-                      child: Row(
+                      child: const Row(
                         children: [
                           Icon(
                             Icons.search_outlined,
@@ -207,14 +206,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                   ],
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Stack(
@@ -234,7 +233,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 100,
                     enlargeCenterPage: true,
                     autoPlay: false,
-                    autoPlayInterval: Duration(seconds: 3),
+                    autoPlayInterval: const Duration(seconds: 3),
                     aspectRatio: 10 / 5,
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enableInfiniteScroll: true,
@@ -250,7 +249,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: SmoothPageIndicator(
                     controller: _controller,
                     count: 3,
-                    effect: SwapEffect(
+                    effect: const SwapEffect(
                         radius: 10,
                         activeDotColor: Color(0xffFF6600),
                         dotColor: Colors.white,
@@ -261,7 +260,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Column(children: [
@@ -276,11 +275,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                           horizontal: 20,
                         ),
                         child: Row(
@@ -294,8 +293,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 //   fontSize: 23,
                                 // )
                                 ),
-                            Spacer(),
-                            Text("See all",
+                            const Spacer(),
+                            const Text("See all",
                                 style: TextStyle(
                                   fontWeight: FontWeight.normal,
                                   fontSize: 16,
@@ -304,7 +303,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 // Theme.of(context).textTheme.headlineMedium
                                 // TextStyle(color: Colors.grey)
                                 ),
-                            SizedBox(
+                            const SizedBox(
                               width: 8,
                             ),
                             Container(
@@ -316,7 +315,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               child: IconButton(
                                   onPressed: () {},
-                                  icon: Icon(Icons.arrow_forward_ios,
+                                  icon: const Icon(Icons.arrow_forward_ios,
                                       weight: 15, size: 12)),
                             ),
                           ],
@@ -344,7 +343,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       Container(
                                         width: 70,
                                         height: 70,
-                                        padding: EdgeInsets.all(6),
+                                        padding: const EdgeInsets.all(6),
                                         decoration: BoxDecoration(
                                           color: Colors.grey.shade100,
                                           borderRadius:
@@ -359,7 +358,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 10,
                                       ),
                                       Text(
@@ -382,10 +381,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               }),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
-                      Padding(
+                      const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -407,15 +406,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: InkWell(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (Buildcontext) => ItemDetails()));
+                                builder: (Buildcontext) =>
+                                    const ItemDetails()));
                           },
                           child: GridView.builder(
                             shrinkWrap: true,
                             itemCount: imagePaths.length,
                             scrollDirection: Axis.vertical,
-                            physics: NeverScrollableScrollPhysics(),
+                            physics: const NeverScrollableScrollPhysics(),
                             gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
+                                const SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
                                     crossAxisSpacing: 10.0,
                                     mainAxisExtent: 280,
@@ -441,7 +441,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     5, // How much the shadow should spread
                                                 blurRadius:
                                                     5, // How soft the shadow should be
-                                                offset: Offset(5,
+                                                offset: const Offset(5,
                                                     5), // Offset in x and y direction
                                               ),
                                             ],
@@ -477,15 +477,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     width: 2.0),
                                                 // color: Colors.grey.shade100
                                                 color: Colors.white),
-                                            child: Icon(Icons.favorite_border),
+                                            child: const Icon(
+                                                Icons.favorite_border),
                                           ),
                                         ),
                                       ],
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 5,
                                     ),
-                                    Text(
+                                    const Text(
                                       "Apple iPhone 15 Pro 126GB Natural Titanium",
                                       style: TextStyle(),
                                       maxLines: 2,
@@ -493,10 +494,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                       // style:
                                       //   Theme.of(context).textTheme.headlineMedium,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 5,
                                     ),
-                                    Row(
+                                    const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
                                       children: [
@@ -542,7 +543,7 @@ class _HomeScreenState extends State<HomeScreen> {
             BoxShadow(
               color: Colors.black.withOpacity(0.1),
               blurRadius: 30,
-              offset: Offset(0, 10),
+              offset: const Offset(0, 10),
             )
           ],
           // borderRadius: BorderRadius.circular(50),
@@ -569,8 +570,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25),
-                          color:
-                              index == currentIndex ? Color(0xffF0F1F2) : null),
+                          color: index == currentIndex
+                              ? const Color(0xffF0F1F2)
+                              : null),
                       padding: const EdgeInsets.symmetric(horizontal: 5),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -580,7 +582,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: index == currentIndex
-                                    ? Color(0xffFF6600)
+                                    ? const Color(0xffFF6600)
                                     : null),
                             padding: const EdgeInsets.all(5),
                             child: Image.asset(
@@ -589,7 +591,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 20,
                               color: index == currentIndex
                                   ? Colors.white
-                                  : Color(0xff666F75),
+                                  : const Color(0xff666F75),
                             ),
                             // Icon(
                             //   '${listOfIcons[index]}',
@@ -600,7 +602,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             // ),
                           ),
                           if (index == currentIndex)
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
                           if (index == currentIndex)
@@ -608,14 +610,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               index == currentIndex
                                   ? '${listOfStrings[index]}'
                                   : '',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w800,
                                 fontSize: 15,
                               ),
                             ),
                           if (index == currentIndex)
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
                         ],

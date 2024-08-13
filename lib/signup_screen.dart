@@ -50,11 +50,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         // height: 180,
                         // width: 180,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Container(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         // height: 350,
                         width: 340,
                         decoration: BoxDecoration(
@@ -67,20 +67,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               spreadRadius:
                                   5, // How much the shadow should spread
                               blurRadius: 5, // How soft the shadow should be
-                              offset:
-                                  Offset(5, 5), // Offset in x and y direction
+                              offset: const Offset(
+                                  5, 5), // Offset in x and y direction
                             ),
                           ],
                         ),
                         child: Column(
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
-                            Text("Create New Account",
+                            const Text("Create New Account",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500, fontSize: 23)),
-                            SizedBox(
+                            const SizedBox(
                               height: 25,
                             ),
                             Column(
@@ -94,14 +94,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         padding: const EdgeInsets.all(17.0),
                                         child: Image.asset(
                                           "assets/profile1.png",
-                                          color: Color(0xffff666F75),
+                                          color: const Color(0xffff666F75),
                                         ),
                                       ),
                                       prefixIconColor: Colors.grey,
                                       filled: true,
-                                      fillColor: Color(0xffffF0F1F2),
+                                      fillColor: const Color(0xffffF0F1F2),
                                       hintText: "Full Name",
-                                      hintStyle: TextStyle(
+                                      hintStyle: const TextStyle(
                                         color: Color(0xffff666F75),
                                       ),
                                       // labelText: "Full Name",
@@ -111,14 +111,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       enabledBorder: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(15),
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                             color: Color(0xFFFFD9D9D9),
                                             width: 1.0,
                                           )),
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(15.0),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: Color(0xFFFF009FBC),
                                         ),
                                       ),
@@ -138,7 +138,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 18,
                             ),
                             Column(
@@ -152,13 +152,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         padding: const EdgeInsets.all(17.0),
                                         child: Image.asset(
                                           "assets/email.png",
-                                          color: Color(0xffff666F75),
+                                          color: const Color(0xffff666F75),
                                         ),
                                       ),
                                       filled: true,
-                                      fillColor: Color(0xffffF0F1F2),
+                                      fillColor: const Color(0xffffF0F1F2),
                                       hintText: "Email",
-                                      hintStyle: TextStyle(
+                                      hintStyle: const TextStyle(
                                         color: Color(0xffff666F75),
                                       ),
                                       // labelText: "Email",
@@ -168,7 +168,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       contentPadding: const EdgeInsets.all(0),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(15),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: Color(0xFFFFD9D9D9),
                                           width: 1.0,
                                         ),
@@ -176,7 +176,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(15.0),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: Color(0xFFFF009FBC),
                                         ),
                                       ),
@@ -191,7 +191,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 18,
                             ),
                             Column(
@@ -206,13 +206,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         padding: const EdgeInsets.all(17.0),
                                         child: Image.asset(
                                           "assets/call.png",
-                                          color: Color(0xffff666F75),
+                                          color: const Color(0xffff666F75),
                                         ),
                                       ),
                                       filled: true,
-                                      fillColor: Color(0xffffF0F1F2),
+                                      fillColor: const Color(0xffffF0F1F2),
                                       hintText: "Mobile No.",
-                                      hintStyle: TextStyle(
+                                      hintStyle: const TextStyle(
                                         color: Color(0xffff666F75),
                                       ),
                                       // labelText: "Mobile No.",
@@ -222,7 +222,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       contentPadding: const EdgeInsets.all(0),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(15),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: Color(0xFFFFD9D9D9),
                                           width: 1.0,
                                         ),
@@ -230,7 +230,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(15.0),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: Color(0xFFFF009FBC),
                                         ),
                                       ),
@@ -245,7 +245,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 18,
                             ),
                             SizedBox(
@@ -264,19 +264,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           isVisible
                                               ? Icons.visibility
                                               : Icons.visibility_off,
-                                          color: Color(0xffff666F75))),
+                                          color: const Color(0xffff666F75))),
                                   prefixIcon: Padding(
                                     padding: const EdgeInsets.all(17.0),
                                     child: Image.asset(
                                       "assets/lock.png",
-                                      color: Color(0xffff666F75),
+                                      color: const Color(0xffff666F75),
                                     ),
                                   ),
                                   filled: true,
                                   contentPadding: const EdgeInsets.all(0),
-                                  fillColor: Color(0xffffF0F1F2),
+                                  fillColor: const Color(0xffffF0F1F2),
                                   hintText: "Password",
-                                  hintStyle: TextStyle(
+                                  hintStyle: const TextStyle(
                                     color: Color(0xffff666F75),
                                   ),
                                   // labelText: "Password",
@@ -285,14 +285,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   // ),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15),
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Color(0xFFFFD9D9D9),
                                       width: 1.0,
                                     ),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15.0),
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Color(0xFFFF009FBC),
                                     ),
                                   ),
@@ -305,7 +305,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 },
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 4,
                             ),
                             Row(
@@ -317,16 +317,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           (Set<MaterialState> states) {
                                     if (states
                                         .contains(MaterialState.selected)) {
-                                      return Color(
+                                      return const Color(
                                           0xffFF6600); // The fill color when the checkbox is checked
                                     }
-                                    return Color(
+                                    return const Color(
                                         0xffffF0F1F2); // The fill color when the checkbox is not checked
                                   }),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(
                                         5.0), // Adjust the radius as needed
-                                    side: BorderSide(
+                                    side: const BorderSide(
                                         color: Color(0xffffD9D9D9),
                                         width: 1.0), // Border color and width
                                   ),
@@ -337,25 +337,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     setState(() {});
                                   },
                                 ),
-                                Text("I agree with terms and conditions")
+                                const Text("I agree with terms and conditions")
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             Center(
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Color(0xffFF6600),
+                                  backgroundColor: const Color(0xffFF6600),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15)),
-                                  minimumSize: Size(double.infinity, 50),
+                                  minimumSize: const Size(double.infinity, 50),
                                 ),
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (Buildcontext) => HomeScreen()));
+                                      builder: (Buildcontext) =>
+                                          const HomeScreen()));
                                 },
-                                child: Row(
+                                child: const Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
@@ -369,14 +370,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 40,
                             ),
                             Center(
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text("Already have an account? ",
+                                  const Text("Already have an account? ",
                                       style: TextStyle(
                                           color: Colors.black, fontSize: 15)),
                                   InkWell(
@@ -384,9 +385,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
                                               builder: (Buildcontext) =>
-                                                  LogInScreen()));
+                                                  const LogInScreen()));
                                     },
-                                    child: Text(
+                                    child: const Text(
                                       "Login",
                                       style: TextStyle(
                                           decoration: TextDecoration.underline,
@@ -398,7 +399,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ],
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                           ],

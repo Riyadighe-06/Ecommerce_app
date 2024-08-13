@@ -38,7 +38,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                       height: 405,
                       enlargeCenterPage: true,
                       autoPlay: false,
-                      autoPlayInterval: Duration(seconds: 3),
+                      autoPlayInterval: const Duration(seconds: 3),
                       aspectRatio: 10 / 5,
                       autoPlayCurve: Curves.fastOutSlowIn,
                       enableInfiniteScroll: true,
@@ -104,7 +104,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       const SizedBox(height: 10),
-                      Text(
+                      const Text(
                         'Apple iPhone 15 Pro 126GB Natural Titanium',
                         // style: Theme.of(context).textTheme.headlineLarge,
                         style: TextStyle(
@@ -113,14 +113,14 @@ class _ItemDetailsState extends State<ItemDetails> {
                             color: Colors.black),
                         maxLines: 2,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Container(
                         // height: 125,
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
-                          color: Color(0xffffF0F1F2),
+                          color: const Color(0xffffF0F1F2),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Padding(
@@ -129,7 +129,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
+                              const Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
@@ -150,17 +150,17 @@ class _ItemDetailsState extends State<ItemDetails> {
                                   )
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
-                              Text(
+                              const Text(
                                 "EMI starts at \$14000",
                                 style: TextStyle(color: Color(0xffff666F75)),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
-                              Row(
+                              const Row(
                                 children: [
                                   Text(
                                     "Free Delivery ",
@@ -174,7 +174,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                                   )
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Row(
@@ -184,7 +184,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                                     height: 17,
                                     width: 16,
                                   ),
-                                  Text(
+                                  const Text(
                                     " Deliver to Indore,India ",
                                     style: TextStyle(fontSize: 14),
                                   ),
@@ -199,7 +199,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       SizedBox(
@@ -233,7 +233,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                                               fontSize: 14,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black)),
-                                      Text(" 117 Reviews",
+                                      const Text(" 117 Reviews",
                                           style: TextStyle(
                                               color: Color(0xffFF6600))),
                                     ],
@@ -306,20 +306,20 @@ class _ItemDetailsState extends State<ItemDetails> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
-                      Text(
+                      const Text(
                         "About this item",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 22,
                             color: Colors.black),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
-                      Text(
+                      const Text(
                         "* Processor: Powerful MediaTek Dimensity 6100+ 5G SoC | 8GB of RAM including"
                         " 4GB virtual | 6.74 HD+ 90Hz display with Corning Gorilla Glass 3 Protection | 50MP AI"
                         "Dual camera |Fast Side fingerprint | 5000mAh Battery",
@@ -328,8 +328,8 @@ class _ItemDetailsState extends State<ItemDetails> {
                             color: Colors.black,
                             fontWeight: FontWeight.w400),
                       ),
-                      Text(
-                        "* 6.74 HD+ 90Hz display with Corning Gorilla Glass 3 Protection, 600nits in High Britness mode",
+                      const Text(
+                        "* 6.74 HD+ 90Hz display with Corning Gorilla Glass 3 Protection, 600nits in High Brightness mode",
                         style: TextStyle(
                             fontSize: 12,
                             color: Colors.black,
@@ -343,13 +343,13 @@ class _ItemDetailsState extends State<ItemDetails> {
                         child: Center(
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xffFF6600),
+                              backgroundColor: const Color(0xffFF6600),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15)),
-                              minimumSize: Size(double.infinity, 50),
+                              minimumSize: const Size(double.infinity, 50),
                             ),
                             onPressed: () {},
-                            child: Row(
+                            child: const Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
@@ -364,7 +364,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       )
                     ],
@@ -391,7 +391,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                           width: 40,
                           height: 40,
                           alignment: Alignment.center,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               shape: BoxShape.circle, color: Colors.white),
                           padding: const EdgeInsets.only(
                               left: 5, right: 5, bottom: 5, top: 0),
@@ -417,7 +417,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                         child: Container(
                             width: 40,
                             height: 40,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 shape: BoxShape.circle, color: Colors.white),
                             padding: const EdgeInsets.all(2),
                             child: Image.asset(
