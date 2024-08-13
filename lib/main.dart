@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
         overlays: []);
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         systemNavigationBarDividerColor: Colors.transparent,
         systemNavigationBarContrastEnforced: true,
@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           fontFamily: 'sfprodisplay',
-          textTheme: TextTheme(
+          textTheme: const TextTheme(
               headlineLarge: TextStyle(
                 // fontFamily: "sfprodisplay",
                 fontWeight: FontWeight.bold,
@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
                 fontSize: 14,
                 color: Colors.grey,
               ))),
-      home: Scaffold(
+      home: const Scaffold(
         body: SplashScreen(),
       ),
     );
