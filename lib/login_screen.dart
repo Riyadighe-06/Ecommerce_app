@@ -29,10 +29,10 @@ class _LogInScreenState extends State<LogInScreen> {
           children: [
             Positioned(
               bottom: 0,
-              left: 0,
-              right: 0,
-              child: Image.asset("assets/Group 195.png",
-                fit: BoxFit.fitWidth,
+              child: Image.asset(
+                "assets/Group 195.png",
+                width: MediaQuery.of(context).size.width,
+                fit: BoxFit.cover,
               ),
             ),
             Positioned(

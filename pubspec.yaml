@@ -111,6 +111,8 @@ flutter:
     - assets/dot.png
     - assets/only_phone.png
     - assets/item_details.png
+    - assets/left-arrow.png
+    - assets/back.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
