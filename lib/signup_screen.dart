@@ -28,9 +28,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
           children: [
             Positioned(
               bottom: 0,
-              child: Image.asset(
-                "assets/Group 195.png",
-                width: MediaQuery.of(context).size.width,
+              left: 0,
+              right: 0,
+              child: Image.asset("assets/Group 195.png",
+                fit: BoxFit.fitWidth,
               ),
             ),
             Positioned(
