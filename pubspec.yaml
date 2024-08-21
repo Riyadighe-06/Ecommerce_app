@@ -37,6 +37,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   carousel_slider: ^5.0.0
   smooth_page_indicator: ^1.2.0+3
+  sqflite: ^2.3.2
+  http: ^1.2.0
+  shared_preferences: ^2.2.3
+  fluttertoast: ^8.2.5
+
 
 dev_dependencies:
   flutter_test:
@@ -113,6 +118,8 @@ flutter:
     - assets/item_details.png
     - assets/left-arrow.png
     - assets/back.png
+    - assets/placeholder.png
+    - assets/profileimage.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -1,5 +1,10 @@
+import 'package:e_commerce_project/Models/Login_Model.dart';
+import 'package:e_commerce_project/Services/Api_Services.dart';
+import 'package:e_commerce_project/shared_preference/shared_pref.dart';
 import 'package:e_commerce_project/signup_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'home_screen.dart';
 
@@ -18,6 +23,22 @@ class _LogInScreenState extends State<LogInScreen> {
   final TextEditingController passwordController = TextEditingController();
   bool isRemember = false;
   bool isVisible = false;
+  late LoginModel loginModel;
+
+  void loginMethod() async {
+    loginModel = await ApiServices.login(
+        email: emailController.text, password: passwordController.text);
+    if (loginModel.status == true) {
+      Fluttertoast.showToast(msg: loginModel.message.toString());
+      SharedPreferance.SetToken("${loginModel.data?.token}");
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (Buildcontext) => const HomeScreen()),
+          (route) => false);
+    } else {
+      Fluttertoast.showToast(msg: loginModel.message.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -264,10 +285,25 @@ class _LogInScreenState extends State<LogInScreen> {
                                         const Size(double.infinity, 50),
                                   ),
                                   onPressed: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (Buildcontext) =>
-                                                const HomeScreen()));
+                                    if (emailController.text.isEmpty) {
+                                      Fluttertoast.showToast(
+                                          msg: "Please Enter your email");
+                                    } else if (!emailController.text
+                                        .isValidEmail()) {
+                                      Fluttertoast.showToast(
+                                          msg: "Please enter valid email");
+                                    } else if (passwordController
+                                        .text.isEmpty) {
+                                      Fluttertoast.showToast(
+                                          msg: "Please Enter your password");
+                                    } else {
+                                      loginMethod();
+                                    }
+
+                                    // Navigator.of(context).push(
+                                    //     MaterialPageRoute(
+                                    //         builder: (Buildcontext) =>
+                                    //             const HomeScreen()));
                                   },
                                   child: const Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -326,5 +362,13 @@ class _LogInScreenState extends State<LogInScreen> {
         ),
       ),
     );
+  }
+}
+
+extension EmailValidator on String {
+  bool isValidEmail() {
+    return RegExp(
+            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+        .hasMatch(this);
   }
 }

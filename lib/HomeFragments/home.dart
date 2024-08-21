@@ -1,8 +1,17 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:e_commerce_project/HomeFragments/favourite_screen.dart';
+import 'package:e_commerce_project/Models/Banner_Model.dart';
+import 'package:e_commerce_project/Models/CategoryList_Modal.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../Models/Login_Model.dart';
+import '../Models/GetProductList_Model.dart';
+import '../Services/Api_Services.dart';
+import '../db_helper.dart';
 import '../item_details.dart';
+import '../shared_preference/shared_pref.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -12,6 +21,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  // bool isFavorite = false;
+
   final List<String> imagePaths = [
     "assets/iphone22.png",
     "assets/pants.png",
@@ -46,6 +57,134 @@ class _HomeState extends State<Home> {
     "Laptop",
   ];
   final _controller = PageController();
+  List<Map<String, dynamic>> _allData = [];
+  bool _isLoading = true;
+  int? id;
+
+  void _refreshData() async {
+    final data = await SQLHelper.getAllData();
+    setState(() {
+      _allData = data;
+      _isLoading = false;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    BannerListModelMethod();
+    CategoryListModelMethod();
+    ListModelMethod();
+    _refreshData();
+  }
+
+  Future<void> _addData() async {
+    await SQLHelper.createData(imagePaths.toString());
+    _refreshData();
+    print("Item Added");
+  }
+
+  Future<void> _updateData(int id) async {
+    await SQLHelper.updateData(id, imagePaths.toString());
+    _refreshData();
+  }
+
+  Future _deleteData(int id) async {
+    await SQLHelper.deleteData(id);
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      backgroundColor: Colors.black,
+      content: Text("Item Remove"),
+    ));
+    _refreshData();
+  }
+
+  late ListModel listModel;
+  late LoginModel loginModel;
+  late List<ListElement> list = [];
+  late CategoryListModel categoryListModel;
+  late List<Category> categoryList = [];
+  late BannerListModel bannerListModel;
+  late List<Bannerr> bannerList = [];
+  bool isLoadingBanner = false;
+  void ListModelMethod() async {
+    String? token = await SharedPreferance.GetToken();
+    // Future<String?> token = SharedPreferance.GetToken();
+    print("loginModel ${token}");
+    if (token != null) {
+      listModel = await ApiServices.productList(token: token);
+      if (listModel.status == true) {
+        for (var i = 0; i < listModel.data!.list!.length; i++) {
+          list.add(listModel.data!.list![i]);
+        }
+      }
+      setState(() {});
+    } else {
+      print("Token is null");
+      // Handle the case when token is null
+    }
+  }
+
+  void CategoryListModelMethod() async {
+    String? token = await SharedPreferance.GetToken();
+    // Future<String?> token = SharedPreferance.GetToken();
+    print("loginModel ${token}");
+    if (token != null) {
+      categoryListModel = await ApiServices.categoryList(token: token);
+      if (categoryListModel.status == true) {
+        for (var i = 0; i < categoryListModel.data!.category!.length; i++) {
+          categoryList.add(categoryListModel.data!.category![i]);
+        }
+      }
+      setState(() {});
+    } else {
+      print("Token is null");
+      // Handle the case when token is null
+    }
+  }
+
+  void BannerListModelMethod() async {
+    setState(() {
+      isLoadingBanner = true;
+    });
+    String? token = await SharedPreferance.GetToken();
+    // Future<String?> token = SharedPreferance.GetToken();
+    print("loginModel ${token}");
+    if (token != null) {
+      bannerListModel = await ApiServices.bannerList(token: token);
+      if (bannerListModel.status == true) {
+        for (var i = 0; i < bannerListModel.data!.banner!.length; i++) {
+          bannerList.add(bannerListModel.data!.banner![i]);
+        }
+      }
+    } else {
+      print("Token is null");
+      // Handle the case when token is null
+    }
+    setState(() {
+      isLoadingBanner = false;
+    });
+  }
+
+  void showTopSnackBar(
+    context,
+    String message, {
+    Duration? duration,
+  }) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(
+        message,
+        style: TextStyle(color: Colors.black),
+      ),
+      backgroundColor: Colors.white,
+      margin: EdgeInsets.only(
+          bottom: MediaQuery.of(context).size.height - 130,
+          left: 10,
+          right: 10),
+      dismissDirection: DismissDirection.up,
+      behavior: SnackBarBehavior.floating,
+      duration: Duration(seconds: 2),
+    ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -208,52 +347,81 @@ class _HomeState extends State<Home> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Stack(
-                    children: [
-                      CarouselSlider.builder(
-                        itemCount: sliderImage.length,
-                        itemBuilder: (BuildContext context, int index, int a) {
-                          return Container(
-                            width: MediaQuery.of(context).size.width,
-                            child: Image.asset(
-                              sliderImage[index],
-                              width: MediaQuery.of(context).size.width,
+                  isLoadingBanner
+                      ? Center(
+                          child: CircularProgressIndicator(
+                            color: Colors.black,
+                          ),
+                        )
+                      : Stack(
+                          children: [
+                            CarouselSlider.builder(
+                              itemCount: bannerList.length,
+                              itemBuilder:
+                                  (BuildContext context, int index, int a) {
+                                Bannerr dataBannerListElements =
+                                    bannerList[index];
+                                return Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    margin:
+                                        EdgeInsets.symmetric(horizontal: 15),
+                                    width: MediaQuery.of(context).size.width,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(15),
+                                      child: Image(
+                                        image: dataBannerListElements.image !=
+                                                    null &&
+                                                dataBannerListElements
+                                                    .image!.isNotEmpty
+                                            ? NetworkImage(dataBannerListElements
+                                                .image!) // Show only the first image
+                                            : AssetImage(
+                                                    'assets/placeholder.png') // Use a local placeholder image
+                                                as ImageProvider,
+                                        fit: BoxFit.fill,
+                                      ),
+                                    )
+                                    // Image.asset(
+                                    //   sliderImage[index],
+                                    //   fit: BoxFit.fill,
+                                    // ),
+                                    );
+                              },
+                              options: CarouselOptions(
+                                height: 100,
+                                enlargeCenterPage: true,
+                                autoPlay: true,
+                                autoPlayInterval: const Duration(seconds: 3),
+                                aspectRatio: 10 / 5,
+                                autoPlayCurve: Curves.fastOutSlowIn,
+                                enableInfiniteScroll: true,
+                                autoPlayAnimationDuration:
+                                    const Duration(milliseconds: 800),
+                                viewportFraction: 1,
+                              ),
                             ),
-                          );
-                        },
-                        options: CarouselOptions(
-                          height: 100,
-                          enlargeCenterPage: true,
-                          autoPlay: false,
-                          autoPlayInterval: const Duration(seconds: 3),
-                          aspectRatio: 10 / 5,
-                          autoPlayCurve: Curves.fastOutSlowIn,
-                          enableInfiniteScroll: true,
-                          autoPlayAnimationDuration:
-                              const Duration(milliseconds: 800),
-                          viewportFraction: 1,
+                            Positioned(
+                              bottom: 10,
+                              right: 10,
+                              left: 160,
+                              child: SmoothPageIndicator(
+                                controller: _controller,
+                                count: bannerList.length,
+                                effect: const SwapEffect(
+                                    radius: 10,
+                                    activeDotColor: Color(0xffFF6600),
+                                    dotColor: Colors.white,
+                                    dotWidth: 6,
+                                    dotHeight: 6,
+                                    spacing: 6),
+                              ),
+                            )
+                          ],
                         ),
-                      ),
-                      Positioned(
-                        bottom: 10,
-                        right: 10,
-                        left: 160,
-                        child: SmoothPageIndicator(
-                          controller: _controller,
-                          count: 3,
-                          effect: const SwapEffect(
-                              radius: 10,
-                              activeDotColor: Color(0xffFF6600),
-                              dotColor: Colors.white,
-                              dotWidth: 6,
-                              dotHeight: 6,
-                              spacing: 6),
-                        ),
-                      )
-                    ],
-                  ),
                   const SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   Column(children: [
                     Container(
@@ -322,15 +490,17 @@ class _HomeState extends State<Home> {
                             ),
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(vertical: 0.0),
+                                  const EdgeInsets.symmetric(vertical: 5.0),
                               child: SizedBox(
                                 height: 120,
                                 child: ListView.builder(
                                     shrinkWrap: true,
                                     scrollDirection: Axis.horizontal,
-                                    itemCount: listImage.length,
+                                    itemCount: categoryList.length,
                                     itemBuilder:
                                         (BuildContext context, int index) {
+                                      Category dataCategoryListElements =
+                                          categoryList[index];
                                       return Padding(
                                         padding:
                                             const EdgeInsets.only(left: 20),
@@ -353,18 +523,36 @@ class _HomeState extends State<Home> {
                                                 height: 20,
                                                 width: 20,
                                                 child: Center(
-                                                  child: Image.asset(
-                                                      listImage[index],
-                                                      height: 100,
-                                                      width: 100),
-                                                ),
+                                                    child: Image(
+                                                        image: dataCategoryListElements
+                                                                        .image !=
+                                                                    null &&
+                                                                dataCategoryListElements
+                                                                    .image!
+                                                                    .isNotEmpty
+                                                            ? NetworkImage(
+                                                                dataCategoryListElements
+                                                                    .image!) // Show only the first image
+                                                            : AssetImage(
+                                                                    'assets/placeholder.png')
+                                                                as ImageProvider,
+                                                        height: 100,
+                                                        width:
+                                                            100 // Use a local placeholder image
+                                                        )
+                                                    // Image.asset(
+                                                    //     listImage[index],
+                                                    //     height: 100,
+                                                    //     width: 100),
+                                                    ),
                                               ),
                                             ),
                                             const SizedBox(
                                               height: 10,
                                             ),
                                             Text(
-                                              title[index],
+                                              dataCategoryListElements.title ??
+                                                  "",
                                               // "IPhone",
                                               style: Theme.of(context)
                                                   .textTheme
@@ -413,17 +601,18 @@ class _HomeState extends State<Home> {
                                 },
                                 child: GridView.builder(
                                   shrinkWrap: true,
-                                  itemCount: imagePaths.length,
+                                  itemCount: list.length,
                                   scrollDirection: Axis.vertical,
                                   physics: const NeverScrollableScrollPhysics(),
                                   gridDelegate:
                                       const SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 2,
-                                          crossAxisSpacing: 10.0,
-                                          mainAxisExtent: 280,
-                                          mainAxisSpacing: 10.0),
+                                          crossAxisSpacing: 30.0,
+                                          mainAxisExtent: 266,
+                                          mainAxisSpacing: 30.0),
                                   itemBuilder:
                                       (BuildContext context, int index) {
+                                    ListElement dataListElements = list[index];
                                     return Container(
                                       child: Column(
                                         crossAxisAlignment:
@@ -435,7 +624,7 @@ class _HomeState extends State<Home> {
                                               Container(
                                                 // color: Colors.grey.shade200,
                                                 decoration: BoxDecoration(
-                                                  color: Colors.grey.shade200,
+                                                  color: Colors.grey.shade100,
                                                   boxShadow: [
                                                     BoxShadow(
                                                       color: Colors
@@ -451,15 +640,30 @@ class _HomeState extends State<Home> {
                                                     ),
                                                   ],
                                                   image: DecorationImage(
-                                                    image: AssetImage(imagePaths[
-                                                        index]), // Specify the image asset here
-                                                    fit: BoxFit
-                                                        .cover, // This adjusts how the image fits within the Container
+                                                    image: dataListElements
+                                                                    .images !=
+                                                                null &&
+                                                            dataListElements
+                                                                .images!
+                                                                .isNotEmpty
+                                                        ? NetworkImage(
+                                                            dataListElements
+                                                                .images!
+                                                                .take(4)
+                                                                .first) // Show only the first image
+                                                        : AssetImage(
+                                                                'assets/placeholder.png')
+                                                            as ImageProvider, // Use a local placeholder image
+                                                    onError: (exception,
+                                                        stackTrace) {
+                                                      print(
+                                                          "Failed to load image: $exception");
+                                                    },
                                                   ),
                                                   borderRadius:
                                                       BorderRadius.circular(20),
                                                 ),
-                                                height: 180,
+                                                height: 200,
                                                 width: 200,
                                                 // child: Image.asset(
                                                 //   imagePaths[index],
@@ -471,20 +675,82 @@ class _HomeState extends State<Home> {
                                               Positioned(
                                                 right: 10,
                                                 top: 10,
-                                                child: Container(
-                                                  // height: 10,
-                                                  // width: 10,
-                                                  padding:
-                                                      const EdgeInsets.all(3),
-                                                  decoration: BoxDecoration(
-                                                      shape: BoxShape.circle,
-                                                      border: Border.all(
-                                                          color: Colors.white,
-                                                          width: 2.0),
-                                                      // color: Colors.grey.shade100
-                                                      color: Colors.white),
-                                                  child: const Icon(
-                                                      Icons.favorite_border),
+                                                child: InkWell(
+                                                  onTap: () async {
+                                                    String token =
+                                                        await SharedPreferance
+                                                                .GetToken() ??
+                                                            ""; // Get the token
+                                                    String productId = list[
+                                                                index]
+                                                            .id ??
+                                                        ""; // Assuming each product has an ID
+                                                    if (list[index]
+                                                            .isWishListed ==
+                                                        true) {
+                                                      // Call remove wishlist API
+                                                      await ApiServices
+                                                          .removeWishList(
+                                                        token: token,
+                                                        wishlistId: list[index]
+                                                            .id, // Assuming you have a wishlistId
+                                                        productId: productId,
+                                                      );
+                                                      list[index].isWishListed =
+                                                          false;
+                                                      showTopSnackBar(context,
+                                                          "Item removed from wishlist");
+                                                    } else {
+                                                      // Call add wishlist API
+                                                      await ApiServices
+                                                          .addWishList(
+                                                        token: token,
+                                                        productId: productId,
+                                                      );
+                                                      list[index].isWishListed =
+                                                          true;
+                                                      showTopSnackBar(context,
+                                                          "Item added to wishlist");
+                                                    }
+                                                    /*if (list[index]
+                                                            .isWishListed ==
+                                                        true) {
+                                                      //removewishlist api call hogi
+                                                      list[index].isWishListed =
+                                                          false;
+                                                    } else {
+                                                      //addwishlist api call hogi
+                                                      list[index].isWishListed =
+                                                          true;
+                                                    }*/
+                                                    setState(() {});
+                                                  },
+                                                  child: Container(
+                                                    // height: 10,
+                                                    // width: 10,
+                                                    padding:
+                                                        const EdgeInsets.all(3),
+                                                    decoration: BoxDecoration(
+                                                        shape: BoxShape.circle,
+                                                        border: Border.all(
+                                                            color: Colors.white,
+                                                            width: 2.0),
+                                                        // color: Colors.grey.shade100
+                                                        color: Colors.white),
+                                                    child: Icon(
+                                                      list[index].isWishListed ==
+                                                              true
+                                                          ? Icons.favorite
+                                                          : Icons
+                                                              .favorite_border,
+                                                      color: list[index]
+                                                                  .isWishListed ==
+                                                              true
+                                                          ? Colors.red
+                                                          : Colors.black,
+                                                      // Icons.favorite_border
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                             ],
@@ -492,29 +758,30 @@ class _HomeState extends State<Home> {
                                           const SizedBox(
                                             height: 5,
                                           ),
-                                          const Text(
-                                            "Apple iPhone 15 Pro 126GB Natural Titanium",
+                                          Text(
+                                            "${dataListElements.name}",
                                             style: TextStyle(),
                                             maxLines: 2,
-
                                             // style:
                                             //   Theme.of(context).textTheme.headlineMedium,
                                           ),
                                           const SizedBox(
                                             height: 5,
                                           ),
-                                          const Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
+                                          Row(
                                             children: [
                                               Text(
-                                                "\$6699.00",
+                                                "${dataListElements.priceRange?.last?.price}",
                                                 style: TextStyle(
-                                                    fontWeight: FontWeight.w800,
+                                                    fontWeight: FontWeight.w700,
                                                     fontSize: 18),
+                                                maxLines: 2,
+                                              ),
+                                              SizedBox(
+                                                width: 20,
                                               ),
                                               Text(
-                                                "80000",
+                                                "${dataListElements.priceRange?.first.price}",
                                                 style: TextStyle(
                                                   decoration: TextDecoration
                                                       .lineThrough,
@@ -524,7 +791,7 @@ class _HomeState extends State<Home> {
                                                   fontSize: 14,
                                                   color: Color(0xffff666F75),
                                                 ),
-                                              )
+                                              ),
                                             ],
                                           ),
                                         ],

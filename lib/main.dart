@@ -3,7 +3,6 @@ import 'package:e_commerce_project/item_details.dart';
 import 'package:e_commerce_project/login_screen.dart';
 import 'package:e_commerce_project/signup_screen.dart';
 import 'package:e_commerce_project/splash_screen.dart';
-import 'package:e_commerce_project/wishlist_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

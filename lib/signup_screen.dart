@@ -1,6 +1,11 @@
 import 'package:e_commerce_project/home_screen.dart';
 import 'package:e_commerce_project/login_screen.dart';
+import 'package:e_commerce_project/shared_preference/shared_pref.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+import 'Models/Signup_Model.dart';
+import 'Services/Api_Services.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -17,6 +22,41 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController passwordController = TextEditingController();
   bool isRemember = false;
   bool isVisible = false;
+  late SignUpModel signUpModel;
+
+  void signUpModelMethod() async {
+    signUpModel = await ApiServices.signup(
+        firstname: fullNameController.text,
+        lastname: "",
+        email: emailController.text,
+        password: passwordController.text,
+        mobile: mobileNoController.text,
+        gender: "",
+        dob: "",
+        photo: "",
+        address: "",
+        city: "",
+        state: "",
+        postCode: "",
+        registerDate: "",
+        country: "",
+        socialPlatform: "",
+        verifiedDocument: "",
+        id: "",
+        createdAt: "",
+        updatedAt: "",
+        v: int.parse(""));
+    if (signUpModel.status == true) {
+      Fluttertoast.showToast(msg: signUpModel.message.toString());
+      SharedPreferance.SetLoginData(signUpModel);
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (Buildcontext) => const HomeScreen()),
+          (route) => false);
+    } else {
+      Fluttertoast.showToast(msg: signUpModel.message.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
