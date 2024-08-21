@@ -31,6 +31,7 @@ class _LogInScreenState extends State<LogInScreen> {
     if (loginModel.status == true) {
       Fluttertoast.showToast(msg: loginModel.message.toString());
       SharedPreferance.SetToken("${loginModel.data?.token}");
+      SharedPreferance.SetIsLogin(true);
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (Buildcontext) => const HomeScreen()),

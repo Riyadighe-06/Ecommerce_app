@@ -1,10 +1,9 @@
 import 'dart:async';
 
+import 'package:e_commerce_project/home_screen.dart';
+import 'package:e_commerce_project/shared_preference/shared_pref.dart';
 import 'package:e_commerce_project/signup_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import 'home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,10 +15,18 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Timer(
-        const Duration(seconds: 3),
-        () => Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const SignUpScreen())));
+    Timer(const Duration(seconds: 3), () {
+      if (SharedPreferance.GetIsLogin() == true) {
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const HomeScreen()));
+      } else {
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const SignUpScreen()));
+      }
+    }
+        // () => Navigator.pushReplacement(context,
+        //     MaterialPageRoute(builder: (context) => const SignUpScreen())),
+        );
     super.initState();
   }
 

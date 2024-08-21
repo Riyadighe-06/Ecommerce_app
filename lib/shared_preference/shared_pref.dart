@@ -35,4 +35,17 @@ class SharedPreferance {
 
     return pref.get("token").toString();
   }
+
+  static void SetIsLogin(bool loginStatus) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+
+    pref.setBool('isLogin', loginStatus ?? false);
+  }
+
+  static Future<bool?> GetIsLogin() async {
+    print("objectuser");
+    SharedPreferences pref = await SharedPreferences.getInstance();
+
+    return pref.getBool("isLogin") ?? false;
+  }
 }

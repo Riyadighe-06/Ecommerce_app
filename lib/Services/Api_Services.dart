@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 
 import '../Models/AddWishList_Model.dart';
 import '../Models/Banner_Model.dart';
+import '../Models/CartList_Model.dart';
 import '../Models/Login_Model.dart';
 import '../Models/UserDetails_Model.dart';
 import '../Models/WishList_Model.dart';
@@ -392,6 +393,46 @@ class ApiServices {
         print("api chal gai");
         UserDetailsModel userDetailsModel = UserDetailsModel.fromJson(data);
         return userDetailsModel;
+      } catch (e) {
+        print("Error decoding response: $e");
+        throw Exception("Failed to parse server response");
+      }
+    } else {
+      print("nahi chali");
+      throw Exception("Failed to log in. Status code: ${response.body}");
+    }
+  }
+
+  static Future<CartListModel> cartList(
+      {required token, required cartId}) async {
+    print("${token}");
+    var url = baseUrl + "cart/view-cart";
+    var headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token',
+    };
+    // Print the URL, headers, and body
+    print("Request URL: $url");
+    print("Request Headers: $headers");
+    // If there is a request body, print it here
+    var requestBody = {'cartId': '${cartId}'}; // Example body
+    // print("Request Body: ${json.encode(requestBody)}");
+
+    var response = await http.post(
+      Uri.parse(url),
+      headers: headers,
+      // body: json.encode(requestBody), // Uncomment if you have a body
+    );
+
+    print("Response Body: ${response.body}");
+
+    if (response.statusCode == 200) {
+      try {
+        var data = json.decode(response.body);
+        debugPrint(data.toString());
+        print("api chal gai");
+        CartListModel cartListModel = CartListModel.fromJson(data);
+        return cartListModel;
       } catch (e) {
         print("Error decoding response: $e");
         throw Exception("Failed to parse server response");

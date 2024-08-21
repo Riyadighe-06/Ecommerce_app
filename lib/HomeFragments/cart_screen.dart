@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../Models/CartList_Model.dart';
+import '../Models/Login_Model.dart';
+import '../Services/Api_Services.dart';
+import '../shared_preference/shared_pref.dart';
+
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
 
@@ -8,6 +13,33 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  @override
+  void initState() {
+    cartListModelMethod();
+  }
+
+  late LoginModel loginModel;
+  late CartListModel cartListModel;
+  late List<Product> cartList = [];
+
+  void cartListModelMethod() async {
+    String? token = await SharedPreferance.GetToken();
+    // Future<String?> token = SharedPreferance.GetToken();
+    print("loginModel ${token}");
+    if (token != null) {
+      cartListModel = await ApiServices.cartList(token: token, cartId: cartList.length);
+      if (cartListModel.status == true) {
+        for (var i = 0; i < cartListModel.data![0].products!.length; i++) {
+          cartList.add(cartListModel.data![0].products![i]);
+        }
+      }
+      setState(() {});
+    } else {
+      print("Token is null");
+      // Handle the case when token is null
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,6 +157,7 @@ class _CartScreenState extends State<CartScreen> {
                     child: ListView.separated(
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
+                        Product cartListData = cartList[index];
                         return Stack(
                           children: [
                             Container(
@@ -152,7 +185,8 @@ class _CartScreenState extends State<CartScreen> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Laptop",
+                                        "${cartListData.productDetail?.name}",
+                                        // "Laptop",
                                         style: TextStyle(
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold),
@@ -160,7 +194,8 @@ class _CartScreenState extends State<CartScreen> {
                                       SizedBox(
                                         height: 5,
                                       ),
-                                      Text("200",
+                                      Text(
+                                          "${cartListData.productDetail?.priceRange}",
                                           style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold)),
@@ -216,7 +251,7 @@ class _CartScreenState extends State<CartScreen> {
                       separatorBuilder: (context, int index) => SizedBox(
                         height: 20,
                       ),
-                      itemCount: 2,
+                      itemCount: cartList.length,
                       shrinkWrap: true,
                     )),
                 Container(
