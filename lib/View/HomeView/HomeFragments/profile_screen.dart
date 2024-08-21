@@ -1,9 +1,9 @@
+import 'package:e_commerce_project/Models/Login_Model.dart';
 import 'package:e_commerce_project/Models/UserDetails_Model.dart';
+import 'package:e_commerce_project/Services/Api_Services.dart';
+import 'package:e_commerce_project/shared_preference/shared_pref.dart';
 import 'package:flutter/material.dart';
 
-import '../Models/Login_Model.dart';
-import '../Services/Api_Services.dart';
-import '../shared_preference/shared_pref.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

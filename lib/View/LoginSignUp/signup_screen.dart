@@ -1,11 +1,11 @@
-import 'package:e_commerce_project/home_screen.dart';
-import 'package:e_commerce_project/login_screen.dart';
+import 'package:e_commerce_project/View/HomeView/home_screen.dart';
+import 'package:e_commerce_project/View/LoginSignUp/login_screen.dart';
 import 'package:e_commerce_project/shared_preference/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'Models/Signup_Model.dart';
-import 'Services/Api_Services.dart';
+import '../../Models/Signup_Model.dart';
+import '../../Services/Api_Services.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});

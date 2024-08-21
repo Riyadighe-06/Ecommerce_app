@@ -1,12 +1,12 @@
 import 'package:e_commerce_project/Models/Login_Model.dart';
 import 'package:e_commerce_project/Services/Api_Services.dart';
 import 'package:e_commerce_project/shared_preference/shared_pref.dart';
-import 'package:e_commerce_project/signup_screen.dart';
+import 'package:e_commerce_project/View/LoginSignUp/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'home_screen.dart';
+import '../HomeView/home_screen.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});

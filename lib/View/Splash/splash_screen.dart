@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:e_commerce_project/signup_screen.dart';
+import 'package:e_commerce_project/View/LoginSignUp/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'home_screen.dart';
+import '../HomeView/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(
         const Duration(seconds: 3),
         () => Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const SignUpScreen())));
+            MaterialPageRoute(builder: (context) => const    SignUpScreen())));
     super.initState();
   }
 

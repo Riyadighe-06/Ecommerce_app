@@ -1,17 +1,15 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:e_commerce_project/HomeFragments/favourite_screen.dart';
 import 'package:e_commerce_project/Models/Banner_Model.dart';
 import 'package:e_commerce_project/Models/CategoryList_Modal.dart';
+import 'package:e_commerce_project/Models/GetProductList_Model.dart';
+import 'package:e_commerce_project/Models/Login_Model.dart';
+import 'package:e_commerce_project/Services/Api_Services.dart';
+import 'package:e_commerce_project/DataBaseHelper/db_helper.dart';
+import 'package:e_commerce_project/View/ProductDetail/item_details.dart';
+import 'package:e_commerce_project/shared_preference/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
-import '../Models/Login_Model.dart';
-import '../Models/GetProductList_Model.dart';
-import '../Services/Api_Services.dart';
-import '../db_helper.dart';
-import '../item_details.dart';
-import '../shared_preference/shared_pref.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
