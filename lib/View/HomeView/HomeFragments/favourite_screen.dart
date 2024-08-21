@@ -1,12 +1,12 @@
+import 'package:e_commerce_project/Models/GetProductList_Model.dart';
+import 'package:e_commerce_project/Models/Login_Model.dart';
 import 'package:e_commerce_project/Models/WishList_Model.dart';
+import 'package:e_commerce_project/Services/Api_Services.dart';
+import 'package:e_commerce_project/DataBaseHelper/db_helper.dart';
+import 'package:e_commerce_project/View/ProductDetail/item_details.dart';
+import 'package:e_commerce_project/shared_preference/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../Models/GetProductList_Model.dart';
-import '../Models/Login_Model.dart';
-import '../Services/Api_Services.dart';
-import '../db_helper.dart';
-import '../item_details.dart';
-import '../shared_preference/shared_pref.dart';
 
 class FavouriteScreen extends StatefulWidget {
   const FavouriteScreen({super.key});
