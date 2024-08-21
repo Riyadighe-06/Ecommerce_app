@@ -1,9 +1,8 @@
+import 'package:e_commerce_project/Models/CartList_Model.dart';
+import 'package:e_commerce_project/Models/Login_Model.dart';
+import 'package:e_commerce_project/Services/Api_Services.dart';
+import 'package:e_commerce_project/shared_preference/shared_pref.dart';
 import 'package:flutter/material.dart';
-
-import '../Models/CartList_Model.dart';
-import '../Models/Login_Model.dart';
-import '../Services/Api_Services.dart';
-import '../shared_preference/shared_pref.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -27,7 +26,8 @@ class _CartScreenState extends State<CartScreen> {
     // Future<String?> token = SharedPreferance.GetToken();
     print("loginModel ${token}");
     if (token != null) {
-      cartListModel = await ApiServices.cartList(token: token, cartId: cartList.length);
+      cartListModel =
+          await ApiServices.cartList(token: token, cartId: cartList.length);
       if (cartListModel.status == true) {
         for (var i = 0; i < cartListModel.data![0].products!.length; i++) {
           cartList.add(cartListModel.data![0].products![i]);
