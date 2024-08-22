@@ -4,7 +4,6 @@ import 'package:e_commerce_project/Services/Api_Services.dart';
 import 'package:e_commerce_project/shared_preference/shared_pref.dart';
 import 'package:flutter/material.dart';
 
-
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
@@ -65,7 +64,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   tileMode: TileMode.clamp),
             ),
             padding:
-                EdgeInsets.only(top: MediaQuery.of(context).padding.top + 10),
+                EdgeInsets.only(top: MediaQuery.of(context).padding.top + 20),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Column(
@@ -142,9 +141,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       )
                     ],
                   )),
-                  const SizedBox(
-                    height: 10,
-                  ),
                   const SizedBox(
                     height: 15,
                   ),

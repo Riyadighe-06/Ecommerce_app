@@ -125,7 +125,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                   tileMode: TileMode.clamp),
             ),
             padding:
-                EdgeInsets.only(top: MediaQuery.of(context).padding.top + 10),
+                EdgeInsets.only(top: MediaQuery.of(context).padding.top + 20),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Column(
@@ -214,9 +214,6 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                       )
                     ],
                   )),
-                  const SizedBox(
-                    height: 10,
-                  ),
                   const SizedBox(
                     height: 15,
                   ),

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import 'HomeFragments/category_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -62,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _pages = [
     Home(),
     FavouriteScreen(),
-    CartScreen(),
+    CategoryScreen(),
     CartScreen(),
     ProfileScreen()
   ];

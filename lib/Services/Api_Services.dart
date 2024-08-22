@@ -403,8 +403,7 @@ class ApiServices {
     }
   }
 
-  static Future<CartListModel> cartList(
-      {required token, required cartId}) async {
+  static Future<CartListModel> cartList({required token}) async {
     print("${token}");
     var url = baseUrl + "cart/view-cart";
     var headers = {
@@ -415,7 +414,7 @@ class ApiServices {
     print("Request URL: $url");
     print("Request Headers: $headers");
     // If there is a request body, print it here
-    var requestBody = {'cartId': '${cartId}'}; // Example body
+    // var requestBody = {'cartId': '${cartId}'}; // Example body
     // print("Request Body: ${json.encode(requestBody)}");
 
     var response = await http.post(

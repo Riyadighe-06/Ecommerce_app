@@ -54,7 +54,7 @@ class _HomeState extends State<Home> {
     "Laptop",
     "Laptop",
   ];
-  final _controller = PageController();
+  final PageController _controller = PageController(initialPage: 0);
   List<Map<String, dynamic>> _allData = [];
   bool _isLoading = true;
   int? id;
@@ -388,9 +388,9 @@ class _HomeState extends State<Home> {
                                     );
                               },
                               options: CarouselOptions(
-                                height: 100,
+                                height: 180,
                                 enlargeCenterPage: true,
-                                autoPlay: true,
+                                autoPlay: false,
                                 autoPlayInterval: const Duration(seconds: 3),
                                 aspectRatio: 10 / 5,
                                 autoPlayCurve: Curves.fastOutSlowIn,
@@ -398,6 +398,11 @@ class _HomeState extends State<Home> {
                                 autoPlayAnimationDuration:
                                     const Duration(milliseconds: 800),
                                 viewportFraction: 1,
+                                onPageChanged: (index, reason) {
+                                  _controller.animateToPage(index,
+                                      duration: Duration(milliseconds: 400),
+                                      curve: Curves.easeInOut);
+                                },
                               ),
                             ),
                             Positioned(
@@ -522,22 +527,22 @@ class _HomeState extends State<Home> {
                                                 width: 20,
                                                 child: Center(
                                                     child: Image(
-                                                        image: dataCategoryListElements
-                                                                        .image !=
-                                                                    null &&
-                                                                dataCategoryListElements
-                                                                    .image!
-                                                                    .isNotEmpty
-                                                            ? NetworkImage(
-                                                                dataCategoryListElements
-                                                                    .image!) // Show only the first image
-                                                            : AssetImage(
-                                                                    'assets/placeholder.png')
-                                                                as ImageProvider,
-                                                        height: 100,
-                                                        width:
-                                                            100 // Use a local placeholder image
-                                                        )
+                                                  image: dataCategoryListElements
+                                                                  .image !=
+                                                              null &&
+                                                          dataCategoryListElements
+                                                              .image!.isNotEmpty
+                                                      ? NetworkImage(
+                                                          dataCategoryListElements
+                                                              .image!) // Show only the first image
+                                                      : AssetImage(
+                                                              'assets/placeholder.png')
+                                                          as ImageProvider,
+                                                  fit: BoxFit.cover,
+                                                  // height: 100,
+                                                  // width:
+                                                  //     100 // Use a local placeholder image
+                                                )
                                                     // Image.asset(
                                                     //     listImage[index],
                                                     //     height: 100,
@@ -590,7 +595,7 @@ class _HomeState extends State<Home> {
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10),
+                                  horizontal: 20, vertical: 8),
                               child: InkWell(
                                 onTap: () {
                                   Navigator.of(context).push(MaterialPageRoute(
@@ -628,9 +633,9 @@ class _HomeState extends State<Home> {
                                                       color: Colors
                                                           .grey.shade200
                                                           .withOpacity(
-                                                              0.5), // Shadow color with opacity
+                                                              0.7), // Shadow color with opacity
                                                       spreadRadius:
-                                                          5, // How much the shadow should spread
+                                                          7, // How much the shadow should spread
                                                       blurRadius:
                                                           5, // How soft the shadow should be
                                                       offset: const Offset(5,
@@ -638,26 +643,26 @@ class _HomeState extends State<Home> {
                                                     ),
                                                   ],
                                                   image: DecorationImage(
-                                                    image: dataListElements
-                                                                    .images !=
-                                                                null &&
-                                                            dataListElements
-                                                                .images!
-                                                                .isNotEmpty
-                                                        ? NetworkImage(
-                                                            dataListElements
-                                                                .images!
-                                                                .take(4)
-                                                                .first) // Show only the first image
-                                                        : AssetImage(
-                                                                'assets/placeholder.png')
-                                                            as ImageProvider, // Use a local placeholder image
-                                                    onError: (exception,
-                                                        stackTrace) {
-                                                      print(
-                                                          "Failed to load image: $exception");
-                                                    },
-                                                  ),
+                                                      image: dataListElements
+                                                                      .images !=
+                                                                  null &&
+                                                              dataListElements
+                                                                  .images!
+                                                                  .isNotEmpty
+                                                          ? NetworkImage(
+                                                              dataListElements
+                                                                  .images!
+                                                                  .take(4)
+                                                                  .first) // Show only the first image
+                                                          : AssetImage(
+                                                                  'assets/placeholder.png')
+                                                              as ImageProvider, // Use a local placeholder image
+                                                      onError: (exception,
+                                                          stackTrace) {
+                                                        print(
+                                                            "Failed to load image: $exception");
+                                                      },
+                                                      fit: BoxFit.cover),
                                                   borderRadius:
                                                       BorderRadius.circular(20),
                                                 ),
